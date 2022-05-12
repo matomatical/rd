@@ -1,15 +1,53 @@
 My paper collection is growing, and I need to manage it. This is a tool
 to help me access papers.
 
-Plan
-----
+Overview
+--------
 
 A script `rd` takes a search term and searches all the papers in my various
 storage locations. It identifies matches and presents them as a list. Then
 it asks which ones to open, by hexadecimal identifiers.
 
-Let's go!
+Installation:
 
+* Put the Python script 'rd' on path somehow (I have a folder on my path,
+  from which I symlink to everything I want on my path)
+* Configure the paths to be searched for papers at the top of the script
+
+Usage:
+
+* Run the command `rd` with a query argument like `Turing` or `Turing1937`.
+* The tool will search for files in the configured paths, recursively,
+  looking for prefix matches (filenames like `Turing*` or `Turing1937*` in
+  this case).
+* The tool will display a list of results, for example for `Turing` query:
+    ```
+    % rd Turing
+    found 7 matches
+    0 Turing+Copeland2004 - The essential Turing seminal writings
+    1 Turing1937 - On Computable Numbers, with an Application to t
+    2 Turing1938correction - On Computable Numbers, with an Applic
+    3 Turing1939 - Systems of Logic Based on Ordinals.pdf
+    4 Turing1948 - Rounding-off errors in matrix processes.pdf
+    5 Turing1950 - Computing Machinery and Intelligence.pdf
+    6 Turing2009 - Computing Machinery and Intelligence.pdf
+    ```
+* The tool will ask `open?`
+  Respond with a whitespace-separated list of indexes (e.g. `1 2`) and it
+  will open these files for you.
+
+
+Note:
+The intended use case is for opening papers, but actually the tool searches
+all files. This has two implications:
+
+1. Probably best to keep the list of paths to paths that actually have mostly
+   papers, and not a lot of extra files (for example, whole drives, or
+   directories with .git directories) because these would slow down the
+   (very naive) search. Future versions can deal with this if it becomes an
+   issue.
+2. On the other hand, this tool can be used for opening anything you like!
+   It doesn't have to be a paper.
 
 History of methods of accessing papers
 --------------------------------------
